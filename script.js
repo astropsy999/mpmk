@@ -225,14 +225,25 @@ const dataFill = function () {
                              let frstwdth = [],
                                  alltheVid = [],
                                  legMetds = [],
-                                 col = ''
-                                 
+                                 col = '',
+                                 lastEl = '',
+                                 vidLen = []
+
+
+                            //    function findLastEl() {
+                            //        let f = data1.table.length - 1,
+                                       
+                            //        lastEl = data1.table[f].vid; }
+
+                            //        return lastEl;                               
 
 
                               
 
                           
                         for (let i = 0;  i < data1.table.length; i++) {
+
+                          
 
                             alltheVid.push(data1.table[i].vid)
                             legMetds.push(data1.table[i].mk)
@@ -344,19 +355,29 @@ const dataFill = function () {
                          if (i > 0 && i < data1.table.length - 1 && data1.table[i].vid != data1.table[i+1].vid) {
                             
                             x = x + ww // делаем промежуток между видами
+                            $('.data-vidname').append(`<text style="width:${vidLen} " x="${x}" y="98%">${data1.table[i].vid}</text>`)
+                            
                             frstwdth.push(x) // собираем в массив 
-                         }                     
+                            // vidLen = frstwdth.map ()
+
+                         
+
+                            
+                         }                    
                          
                          else {
                              
-                             $('.data-vidname').append(`<text class="" x="${x}" y="98%"></text>`)
+                             $('.data-vidname').append(`<text slyle="width: ${wl} px" x="${x}" y="98%"></text>`)
                          }
                                                  
                         } 
 
-                       // Цвета легенды 
+                       // Последнее название вида
+                        // findLastEl();
+                        let theLVid = alltheVid[alltheVid.length - 1]
+                       $('.data-vidname').append(`<text style="width:auto" x="${x}" y="98%">${theLVid}</text>`)
                        
-                       
+                       console.log(frstwdth)
                        
 
                         // Рисуем Легенду 
@@ -379,12 +400,14 @@ const dataFill = function () {
                         
                         // Оставляем в массиве видов уникальные значения
 
-                        let uniqueVid = [...new Set(alltheVid)]
-                        // Перебираем массив и печатаем все виды под каждым дефектом                        
-                        uniqueVid.forEach((item) => {
-                            $('.data-vidname').append(`<text class="" x="${x}" y="98%">${item}</text>`)
+                    //   let uniqueVid = [...new Set(alltheVid)]
+                    //   // Перебираем массив и печатаем все виды под каждым дефектом                        
+                    //   uniqueVid.forEach((item) => {
+                    //       let vidWdth = item.length
+                    //          console.log(vidWdth)
+                    //       $('.data-vidname').append(`<text style="width: ${vidWdth} px" x="${x}" y="98%">${item}</text>`)
 
-                        });
+                    //   });
 
 
 

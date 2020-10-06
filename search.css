@@ -102,13 +102,11 @@ p .legend-color {
 }
 
 
-/* .data-vidname text {
-  paddIng-right: 20px;
-} */
-
-.data-vidname span {
-
+.data-vidname text {
+  
 }
+
+
 .data-vidname.vidname {
   width: 500px;
 }
