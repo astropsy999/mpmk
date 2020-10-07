@@ -227,7 +227,9 @@ const dataFill = function () {
                                  legMetds = [],
                                  col = '',
                                  lastEl = '',
-                                 vidLen = []
+                                 vidLen = [],
+                                 recNum = ''
+                                 
 
 
                             //    function findLastEl() {
@@ -343,23 +345,44 @@ const dataFill = function () {
 
         // Рисуем график
 
-                         let ych = 197 - data1.table[i].ver // расстояние от начала координат до цифры над столбцом
+                         let ych = 197 - data1.table[i].ver
+                              // расстояние от начала координат до цифры над столбцом
                         
                          // добавляем бары графика, вычисляя их толщину в зависимости от количества баров    
                          $('.barchart').append(`<rect width="${wl}" height="${data1.table[i].ver}%" x=${x} y=0 fill="${col}"></rect>`);
-                         // пишем значения над каждым баром
+                         // Добавляем Примечания к значению в % над графиком
+                         if (data1.table[i].prim != '') {
+                             $('.txtchart').append(`<circle title="${data1.table[i].prim}"  cx="${x+15}" cy="${ych-4}%" r="5" fill="red" class="prim"><title>${data1.table[i].prim}</title></circle>`);
+                         }
+                         // пишем значения в % над каждым баром
                          $('.txtchart').append(`<text x="${x}" y="${ych}%" class="charttxt">${data1.table[i].ver}%</text>`);
                          
+                         // Вычленяем число из Рекомендаций
+                          if (data1.table[i].rec != '') {
+                            recNum = parseInt(data1.table[i].rec.replace(/[^\d]/g, ''))
+                            let ychZ = 197 - recNum
+                            $('.barchart').append(`<rect width="${wl}" height="${recNum}%" x=${x} y=0 fill="#f3f5f4" class="transchart"></rect>`)
+                            $('.txtchart').append(`<text x="${x}" y="${ychZ}%" class="charttxt transtxtchart" fill="#e2e2ee">${recNum}%</text>`)
+                        }
+                          
+
+                            
+                            
+
+
                          x = x + (wl+5) // двигаем графики
                          // ловим когда наступает смена вида деффекта
                          if (i > 0 && i < data1.table.length - 1 && data1.table[i].vid != data1.table[i+1].vid) {
                             
                             x = x + ww // делаем промежуток между видами
-                            $('.data-vidname').append(`<text style="width:${vidLen} " x="${x}" y="98%">${data1.table[i].vid}</text>`)
+                            $('.data-vidname').append(`<text style="width:${vidLen}px;" x="${x}" y="98%">${data1.table[i].vid}</text>`)
                             
-                            frstwdth.push(x) // собираем в массив 
-                            // vidLen = frstwdth.map ()
-
+                            frstwdth.push(x) // собираем в массив
+                            
+                            // let vidLeng = frstwdth[length]
+                            // vidLen.push(vidLeng)
+                            // console.log(vidLen)
+                            // console.log(frstwdth)
                          
 
                             
@@ -371,13 +394,13 @@ const dataFill = function () {
                          }
                                                  
                         } 
-
+                        console.log(data1.table)
                        // Последнее название вида
                         // findLastEl();
                         let theLVid = alltheVid[alltheVid.length - 1]
                        $('.data-vidname').append(`<text style="width:auto" x="${x}" y="98%">${theLVid}</text>`)
                        
-                       console.log(frstwdth)
+                       
                        
 
                         // Рисуем Легенду 

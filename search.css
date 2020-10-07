@@ -102,23 +102,26 @@ p .legend-color {
 }
 
 
-.data-vidname text {
-  
-}
-
-
 .data-vidname.vidname {
   width: 500px;
 }
 g.barchart {
+  z-index: 10;
   position: relative;
   height: 420px;
+  
+}
+rect {
+  position: relative;
+  z-index: 200;
 }
 
 g.txtchartvid {
   text-overflow: clip;
 }
 .data
+
+
  
 svg {
   height: 105%;
@@ -127,6 +130,15 @@ svg {
 
 #hchcontainer {
   height: 500px;
+}
+
+.prim {cursor: pointer;}
+.transchart {
+  position: relative;
+  z-index: -10;
+}
+.transtxtchart {
+  color: #f3f5f4;
 }
 
 .highcharts-data-table table {
