@@ -60,6 +60,8 @@ span.vidname{
   font-size: 12px;
 
 }
+
+
 .charts-legend {
  
   display: flex;
@@ -115,6 +117,8 @@ rect {
   position: relative;
   z-index: 200;
 }
+
+
 
 g.txtchartvid {
   text-overflow: clip;

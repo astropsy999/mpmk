@@ -222,13 +222,14 @@ const dataFill = function () {
                             // Пишем название 1го дефекта
                             
                             // $('.data-vidname').append(`<text x="${x}" y="98%" class="vidname0">${data1.table[0].vid}</text>`)
-                             let frstwdth = [],
+                             let frstwdth = [0],
                                  alltheVid = [],
                                  legMetds = [],
                                  col = '',
                                  lastEl = '',
-                                 vidLen = [],
-                                 recNum = ''
+                                 recNum = '',
+                                 vidLen = ''
+
                                  
 
 
@@ -349,10 +350,10 @@ const dataFill = function () {
                               // расстояние от начала координат до цифры над столбцом
                         
                          // добавляем бары графика, вычисляя их толщину в зависимости от количества баров    
-                         $('.barchart').append(`<rect width="${wl}" height="${data1.table[i].ver}%" x=${x} y=0 fill="${col}"></rect>`);
+                         $('.barchart').append(`<rect width="${wl}" height="${data1.table[i].ver}%" x=${x} y=0 fill="${col}"><title>${data1.table[i].mk}</title></rect>`);
                          // Добавляем Примечания к значению в % над графиком
                          if (data1.table[i].prim != '') {
-                             $('.txtchart').append(`<circle title="${data1.table[i].prim}"  cx="${x+15}" cy="${ych-4}%" r="5" fill="red" class="prim"><title>${data1.table[i].prim}</title></circle>`);
+                             $('.txtchart').append(`<circle title="${data1.table[i].prim}"  cx="${x+10}" cy="${ych-4}%" r="5" fill="red" class="prim"><title>${data1.table[i].prim}</title></circle>`);
                          }
                          // пишем значения в % над каждым баром
                          $('.txtchart').append(`<text x="${x}" y="${ych}%" class="charttxt">${data1.table[i].ver}%</text>`);
@@ -365,24 +366,16 @@ const dataFill = function () {
                             $('.txtchart').append(`<text x="${x}" y="${ychZ}%" class="charttxt transtxtchart" fill="#e2e2ee">${recNum}%</text>`)
                         }
                           
-
-                            
-                            
-
-
                          x = x + (wl+5) // двигаем графики
                          // ловим когда наступает смена вида деффекта
                          if (i > 0 && i < data1.table.length - 1 && data1.table[i].vid != data1.table[i+1].vid) {
                             
                             x = x + ww // делаем промежуток между видами
+                            frstwdth.push(x)
+                            console.log (frstwdth)
+                            vidLen = frstwdth[1] - frstwdth[0]
                             $('.data-vidname').append(`<text style="width:${vidLen}px;" x="${x}" y="98%">${data1.table[i].vid}</text>`)
-                            
-                            frstwdth.push(x) // собираем в массив
-                            
-                            // let vidLeng = frstwdth[length]
-                            // vidLen.push(vidLeng)
-                            // console.log(vidLen)
-                            // console.log(frstwdth)
+                            frstwdth.shift() 
                          
 
                             
@@ -394,13 +387,22 @@ const dataFill = function () {
                          }
                                                  
                         } 
-                        console.log(data1.table)
+
+                        
+                        
                        // Последнее название вида
-                        // findLastEl();
+                        
                         let theLVid = alltheVid[alltheVid.length - 1]
                        $('.data-vidname').append(`<text style="width:auto" x="${x}" y="98%">${theLVid}</text>`)
                        
-                       
+                    //    // Находим ширину каждого вида
+                    //     frstwdth.map(function (item, i) {
+                    //     vidLen = frstwdth[i]
+                    
+                    //     })
+
+                       console.log(frstwdth)
+                        console.log(vidLen)
                        
 
                         // Рисуем Легенду 
