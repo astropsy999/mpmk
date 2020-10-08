@@ -362,7 +362,7 @@ const dataFill = function () {
                           if (data1.table[i].rec != '') {
                             recNum = parseInt(data1.table[i].rec.replace(/[^\d]/g, ''))
                             let ychZ = 197 - recNum
-                            $('.barchart').append(`<rect width="${wl}" height="${recNum}%" x=${x} y=0 fill="#f3f5f4" class="transchart"></rect>`)
+                            $('.barchart').append(`<rect width="${wl}" height="${recNum}%" x=${x} y=0 fill="#f3f5f4" class="transchart"><title>${data1.table[i].rec}/${data1.table[i].mk}</title></rect>`)
                             $('.txtchart').append(`<text x="${x}" y="${ychZ}%" class="charttxt transtxtchart" fill="#e2e2ee">${recNum}%</text>`)
                         }
                           
